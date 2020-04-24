@@ -7,3 +7,4 @@ Tecnologias estudadas:
 - Spring Web
 - Spring Data JPA
 - Flyway (Versionamento de Banco de Dados)
+- Modelmapper
