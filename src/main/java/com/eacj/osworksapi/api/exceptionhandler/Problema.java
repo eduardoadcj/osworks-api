@@ -2,7 +2,7 @@ package com.eacj.osworksapi.api.exceptionhandler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 //anotação usada para no momento da serialização para json só serializar campos não nulos
@@ -10,7 +10,7 @@ import java.util.List;
 public class Problema {
 
     private Integer status;
-    private LocalDateTime dataHora;
+    private OffsetDateTime dataHora;
     private String titulo;
     private List<Campo> campos;
 
@@ -22,11 +22,11 @@ public class Problema {
         this.status = status;
     }
 
-    public LocalDateTime getDataHora() {
+    public OffsetDateTime getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
+    public void setDataHora(OffsetDateTime dataHora) {
         this.dataHora = dataHora;
     }
 
