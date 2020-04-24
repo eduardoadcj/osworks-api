@@ -2,6 +2,7 @@ package com.eacj.osworksapi.api.controller;
 
 import com.eacj.osworksapi.domain.model.Cliente;
 import com.eacj.osworksapi.domain.repository.ClienteRepository;
+import com.eacj.osworksapi.domain.service.CadastroClienteService;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -25,6 +26,9 @@ public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
     
+    @Autowired
+    private CadastroClienteService cadastroClienteService;
+    
     @GetMapping
     public List<Cliente> listar(){
         //return clienteRepository.findByNomeContaining("nome");
@@ -45,7 +49,7 @@ public class ClienteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente adicionar(@Valid @RequestBody Cliente cliente){
-        return clienteRepository.save(cliente);
+        return cadastroClienteService.salvar(cliente);
     }
     
     @PutMapping("/{id}")
@@ -54,7 +58,7 @@ public class ClienteController {
             return ResponseEntity.notFound().build();
         
         cliente.setId(id);
-        cliente = clienteRepository.save(cliente);
+        cliente = cadastroClienteService.salvar(cliente);
         
         return ResponseEntity.ok(cliente);
     }
@@ -65,7 +69,7 @@ public class ClienteController {
         if(!clienteRepository.existsById(id))
             return ResponseEntity.notFound().build();
         
-        clienteRepository.deleteById(id);
+        cadastroClienteService.remover(id);
         return ResponseEntity.noContent().build();
     }
     

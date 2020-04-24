@@ -1,8 +1,12 @@
 package com.eacj.osworksapi.api.exceptionhandler;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.time.LocalDateTime;
 import java.util.List;
 
+//anotação usada para no momento da serialização para json só serializar campos não nulos
+@JsonInclude(Include.NON_NULL)
 public class Problema {
 
     private Integer status;
