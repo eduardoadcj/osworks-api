@@ -5,7 +5,6 @@ import com.eacj.osworksapi.domain.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -23,6 +22,13 @@ import javax.validation.groups.Default;
 
 @Entity
 public class OrdemServico {
+    
+    /*
+        As validações nesta classe são desnecessárias uma vez que a sua 
+        estruturação e validação é definida pela classe pela representação na API.
+        Como a unica forma de acesso ao recurso é através da API, uma segunda validação,
+        neste caso, seria redundante.
+    */
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
