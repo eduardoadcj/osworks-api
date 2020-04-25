@@ -2,6 +2,7 @@
 package com.eacj.osworksapi.domain.model;
 
 import com.eacj.osworksapi.domain.ValidationGroups;
+import com.eacj.osworksapi.domain.exception.NegocioException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.math.BigDecimal;
@@ -70,6 +71,24 @@ public class OrdemServico {
     @OneToMany(mappedBy = "ordemServico")
     private List<Comentario> comentarios = new ArrayList<>();
 
+    public boolean podeSerFinalizada(){
+        return StatusOrdemServico.ABERTA.equals(getStatus());
+    }
+    
+    public boolean naoPodeSerFinalizada(){
+        return !podeSerFinalizada();
+    }
+    
+    public void finalizar(){
+        
+        if(naoPodeSerFinalizada())
+            throw new NegocioException("Ordem de servico não pode ser finalizada");
+        
+        setStatus(StatusOrdemServico.FINALIZADA);
+        setDataFinalizacao(OffsetDateTime.now());
+        
+    }
+    
     public Long getId() {
         return id;
     }
